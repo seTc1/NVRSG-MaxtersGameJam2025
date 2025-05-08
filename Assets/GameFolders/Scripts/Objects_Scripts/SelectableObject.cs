@@ -1,10 +1,14 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SelectableObject : MonoBehaviour
 {
     [Header("=== References ===")]
     [SerializeField] private GameObject _clickIconCanvas;
+
+    [Header("=== Events ===")]
+    [SerializeField] private UnityEvent _onClick;
 
     private Camera _mainCamera;
     private Outline _outlineController;
@@ -29,7 +33,13 @@ public class SelectableObject : MonoBehaviour
             {
                 OnHoverEnter();
             }
+
             UpdateCanvasRotation();
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                _onClick?.Invoke();
+            }
         }
         else
         {

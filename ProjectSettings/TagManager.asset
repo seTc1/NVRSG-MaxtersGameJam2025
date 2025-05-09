@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - cardsCanvas
+  - 2Dcam
   layers:
   - Default
   - TransparentFX

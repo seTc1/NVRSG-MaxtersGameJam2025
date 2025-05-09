@@ -39,6 +39,7 @@ public class JobDiscet_Controller : DraggableObject
 
         foreach (var point in DiscetHolderBar_Controller.Instance.HolderBarPoints)
         {
+            if (point.transform.childCount > 1) continue;
             float dist = Vector3.Distance(transform.position, point.transform.position);
             if (dist < closestDistance)
             {
@@ -47,7 +48,7 @@ public class JobDiscet_Controller : DraggableObject
             }
         }
 
-        if (closestDistance <= snapDistance)
+        if (closestPoint != null && closestDistance <= snapDistance)
         {
             transform.position = closestPoint.transform.position;
             transform.SetParent(closestPoint.transform);
@@ -61,7 +62,7 @@ public class JobDiscet_Controller : DraggableObject
             return;
         }
 
-        GameObject canvas = GameObject.FindWithTag("cardsCanvas");
+        var canvas = GameObject.FindWithTag("cardsCanvas");
         if (canvas != null)
         {
             transform.SetParent(canvas.transform);
@@ -73,4 +74,5 @@ public class JobDiscet_Controller : DraggableObject
             transform.SetParent(_lastSnapParent);
         }
     }
+
 }

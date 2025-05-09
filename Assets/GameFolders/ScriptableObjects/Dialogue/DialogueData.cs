@@ -17,6 +17,5 @@ public class DialogueData : ScriptableObject
     
     public int startEventID;
     public int endEventID;
-    public bool playerCantMove;
     public DialogueEntry[] dialogueEntries;
 }

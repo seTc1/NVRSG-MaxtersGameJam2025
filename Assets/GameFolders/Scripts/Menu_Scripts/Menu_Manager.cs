@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject _mainCanvas;
     [SerializeField] private GameObject _settingsCanvas;
-    
+    [SerializeField] private string _gameSceneName = "GameScene";
     private bool _settingsOpen;
 
     private void Start()
@@ -16,7 +17,7 @@ public class Menu_Manager : MonoBehaviour
 
     public void StartGame()
     {
-        
+        SceneManager.LoadScene(_gameSceneName);
     }
 
     public void SettingsWindow()

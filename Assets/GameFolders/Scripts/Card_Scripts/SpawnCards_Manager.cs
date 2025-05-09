@@ -1,14 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using UnityEditor;
 using Zenject;
 
 public class SpawnCards_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private WordCard_Data[] _cardDataAvaible;
-    
+
     [SerializeField] private Transform _spawnTransform;
-    
+
+    [SerializeField] private float _spawnDelay;
+    [Header("=== Card Throw Settings ===")]
+    [SerializeField] private float _minThrowAngle = 20f;
+    [SerializeField] private float _maxThrowAngle = 160f;
+
     private PlayerStats_Manager _playerStats;
 
     [Inject]
@@ -16,7 +22,7 @@ public class SpawnCards_Manager : MonoBehaviour
     {
         _playerStats = playerStats;
     }
-    
+
     public void ReleaseCards()
     {
         StartCoroutine(ReleaseCardsRoutine());
@@ -27,20 +33,51 @@ public class SpawnCards_Manager : MonoBehaviour
         for (int i = 0; i < _playerStats._jobCardsCount; i++)
         {
             GameObject spawnedCard = Instantiate(_cardPrefab, _spawnTransform.position, Quaternion.identity);
-            spawnedCard.transform.parent = GameObject.FindWithTag("cardsCanvas").transform;
+            spawnedCard.transform.SetParent(GameObject.FindWithTag("cardsCanvas").transform, false);
+            spawnedCard.transform.position = _spawnTransform.position;
             spawnedCard.transform.localScale = Vector3.one;
+            spawnedCard.GetComponent<DragCard_Controller>().InsertData(_cardDataAvaible[Random.Range(0, _cardDataAvaible.Length)]);
 
             Rigidbody2D rb = spawnedCard.GetComponent<Rigidbody2D>();
-            float angle = Random.Range(0f, 90f);
+            float angle = Random.Range(_minThrowAngle, _maxThrowAngle);
             Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.right;
 
-            float force = Random.Range(800f, 1200f);
+            float force = Random.Range(400f, 1600f);
             rb.AddForce(direction * force);
             rb.linearDamping = 2f;
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(_spawnDelay);
         }
+        _playerStats._jobCardsCount = 0;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        if (_spawnTransform == null) return;
 
+        float radius = 2f;
+        int segments = 20;
+
+        Vector3 origin = _spawnTransform.position;
+        Handles.color = Color.yellow;
+
+        float step = (_maxThrowAngle - _minThrowAngle) / segments;
+
+        for (int i = 0; i < segments; i++)
+        {
+            float angleA = _minThrowAngle + step * i;
+            float angleB = _minThrowAngle + step * (i + 1);
+
+            Vector3 pointA = origin + Quaternion.Euler(0, 0, angleA) * Vector3.right * radius;
+            Vector3 pointB = origin + Quaternion.Euler(0, 0, angleB) * Vector3.right * radius;
+
+            Handles.DrawLine(pointA, pointB);
+        }
+
+        Vector3 dirMin = Quaternion.Euler(0, 0, _minThrowAngle) * Vector3.right * radius;
+        Vector3 dirMax = Quaternion.Euler(0, 0, _maxThrowAngle) * Vector3.right * radius;
+        Handles.color = Color.red;
+        Handles.DrawLine(origin, origin + dirMin);
+        Handles.DrawLine(origin, origin + dirMax);
+    }
 }

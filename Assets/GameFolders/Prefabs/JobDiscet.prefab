@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7885615829226947869}
   - component: {fileID: 6045488190806847532}
   - component: {fileID: 4398461558312660522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: JobName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 3126010252245096326}
   - component: {fileID: 5293511491414415113}
   - component: {fileID: 1873047220248765019}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4861461566220042031}
   - component: {fileID: 4642516096362624181}
   - component: {fileID: 5335195219204480668}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: JobDiscet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,6 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jobDiscetData: {fileID: 11400000, guid: 53b27a51625ed58498a33d99e6249ff9, type: 2}
   _displayName: {fileID: 4398461558312660522}
+  snapDistance: 1
+  returnDistance: 1
 --- !u!61 &5335195219204480668
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,10 +1,11 @@
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class JobDiscet_Controller : DraggableObject
 {
     [Header("=== Discet Settings ===")]
-    [SerializeField] public JobDiscet_Data _jobDiscetData;
+    [SerializeField] private JobDiscet_Data _jobDiscetData;
     [SerializeField] private TMP_Text _displayName;
 
     [Header("=== Snapping Settings ===")]
@@ -13,10 +14,11 @@ public class JobDiscet_Controller : DraggableObject
 
     private Vector3 _lastSnapPosition;
     private Transform _lastSnapParent;
+    private bool _wasInHotbar;
 
-    public void InsertData(JobDiscet_Data _insertedData)
+    public void InsertData(JobDiscet_Data insertedData)
     {
-        _jobDiscetData = _insertedData;
+        _jobDiscetData = insertedData;
         _displayName.text = _jobDiscetData._JobName;
     }
 
@@ -25,6 +27,7 @@ public class JobDiscet_Controller : DraggableObject
         base.OnMouseDown();
         _lastSnapPosition = transform.position;
         _lastSnapParent = transform.parent;
+        _wasInHotbar = DiscetHolderBar_Controller.Instance.HolderBarPoints.Contains(_lastSnapParent?.gameObject);
     }
 
     protected override void OnMouseUp()
@@ -51,7 +54,7 @@ public class JobDiscet_Controller : DraggableObject
             return;
         }
 
-        if (Vector3.Distance(transform.position, _lastSnapPosition) <= returnDistance)
+        if (_wasInHotbar && Vector3.Distance(transform.position, _lastSnapPosition) <= returnDistance)
         {
             transform.position = _lastSnapPosition;
             transform.SetParent(_lastSnapParent);

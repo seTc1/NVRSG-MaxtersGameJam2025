@@ -16,6 +16,12 @@ public class DragCard_Controller : DraggableObject
         _cardText.text = _wordCardData._cardAbility;
     }
 
+    public void InsertData(WordCard_Data wordCardData)
+    {
+        _wordCardData = wordCardData;
+        _cardText.text = _wordCardData._cardAbility;
+    }
+
     protected override void OnMouseUp()
     {
         base.OnMouseUp();

@@ -1,47 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerInteraction_Script : MonoBehaviour
 {
-    [SerializeField] private GameObject _outerCam;
-    [SerializeField] private GameObject _lookOnMonitorCam;
 
-    [SerializeField] private float _noiseDelay;
-    [SerializeField] private GameObject _noiseCanvas;
-    [SerializeField] private Animator _screenNoiseAnimator;
-    [SerializeField] private GameObject[] _monitorCams;
-    
-    [SerializeField] private GameObject[] _mainCams;
+    [Header("=== Камеры ===")]
+    [SerializeField] private GameObject _outerCamera;
+    [SerializeField] private GameObject monitorLookCamera;
+    [SerializeField] private GameObject[] monitorCameras;
+    [SerializeField] private GameObject[] mainCameras;
 
-    [SerializeField] private GameObject[] _monitorCanvases;
-    [Header("=== Debug ===")] 
-    [SerializeField] private bool _lookingOnMonitors;
+    [Header("=== Экраны и интерфейс ===")]
+    [SerializeField] private float noiseDelay;
+    [SerializeField] private Animator screenNoiseAnimator;
+    [SerializeField] private GameObject[] monitorCanvases;
+    [SerializeField] private GameObject[] monitorEnvironments;
 
+    [Header("=== Отладка ===")] 
+    [SerializeField] private bool isLookingAtMonitors;
 
     public void ChangeLook()
     {
-        _lookingOnMonitors = !_lookingOnMonitors;
-        _outerCam.SetActive(!_outerCam.activeSelf);
-        _lookOnMonitorCam.SetActive(!_lookOnMonitorCam.activeSelf);
+        isLookingAtMonitors = !isLookingAtMonitors;
+        _outerCamera.SetActive(!_outerCamera.activeSelf);
+        monitorLookCamera.SetActive(!monitorLookCamera.activeSelf);
     }
 
-    public void MonitorClicked(int _monitorID)
+    public void MonitorClicked(int monitorID)
     {
-        if (_lookingOnMonitors)
+        if (isLookingAtMonitors)
         {
-            _screenNoiseAnimator.SetTrigger("noise");
-            _lookOnMonitorCam.SetActive(false);
-            _monitorCams[_monitorID].SetActive(true);
-            switch (_monitorID)
+            screenNoiseAnimator.SetTrigger("noise");
+            monitorLookCamera.SetActive(false);
+            monitorCameras[monitorID].SetActive(true);
+
+            switch (monitorID)
             {
                 case 0:
-                    StartCoroutine(GoToStats());
+                    StartCoroutine(SwitchToStatsView());
                     break;
                 case 1:
+                    StartCoroutine(SwitchToManage());
                     break;
                 case 2:
+                    StartCoroutine(SwitchToCraft());
                     break;
             }
         }
@@ -49,31 +53,57 @@ public class PlayerInteraction_Script : MonoBehaviour
 
     public void ReturnToChair()
     {
-        _screenNoiseAnimator.SetTrigger("noise");
-        StartCoroutine(ReturnDelay());
+        screenNoiseAnimator.SetTrigger("noise");
+        StartCoroutine(DelayReturnToChair());
     }
 
-    private IEnumerator ReturnDelay()
+    private IEnumerator DelayReturnToChair()
     {
-        yield return new WaitForSeconds(_noiseDelay);   
-        _lookingOnMonitors = true;
-        _mainCams[0].SetActive(true);
-        _mainCams[1].SetActive(false);
-        foreach (GameObject _canvas in _monitorCanvases)
+        yield return new WaitForSeconds(noiseDelay);   
+        isLookingAtMonitors = true;
+        mainCameras[0].SetActive(true);
+        mainCameras[1].SetActive(false);
+
+        foreach (GameObject canvas in monitorCanvases)
         {
-            _canvas.SetActive(false);
+            canvas.SetActive(false);
         }
-        _lookOnMonitorCam.SetActive(true);
+        foreach (GameObject _enviroment in monitorEnvironments)
+        {
+            _enviroment.SetActive(false);
+        }
+        monitorLookCamera.SetActive(true);
     }
 
-    private IEnumerator GoToStats()
+    private IEnumerator SwitchToCraft()
     {
-        yield return new WaitForSeconds(_noiseDelay);   
-        _lookingOnMonitors = false;
-        _monitorCams[0].SetActive(false);
-        _monitorCanvases[0].SetActive(true);
-        _mainCams[0].SetActive(false);
-        _mainCams[1].SetActive(true);
+        yield return new WaitForSeconds(noiseDelay); 
+        isLookingAtMonitors = false;
+        monitorCameras[2].SetActive(false);
+        monitorCanvases[2].SetActive(true);
+        monitorEnvironments[2].SetActive(true);
+        mainCameras[0].SetActive(false);
+        mainCameras[1].SetActive(true);
     }
-    
+
+    private IEnumerator SwitchToManage()
+    {
+        yield return new WaitForSeconds(noiseDelay);
+        isLookingAtMonitors = false;
+        monitorCameras[1].SetActive(false);
+        monitorCanvases[1].SetActive(true);
+        monitorEnvironments[1].SetActive(true);
+        mainCameras[0].SetActive(false);
+        mainCameras[1].SetActive(true);
+    }
+    private IEnumerator SwitchToStatsView()
+    {
+        yield return new WaitForSeconds(noiseDelay);   
+        isLookingAtMonitors = false;
+        monitorCameras[0].SetActive(false);
+        monitorCanvases[0].SetActive(true);
+        monitorEnvironments[0].SetActive(true);
+        mainCameras[0].SetActive(false);
+        mainCameras[1].SetActive(true);
+    }
 }

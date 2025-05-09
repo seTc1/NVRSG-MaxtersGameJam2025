@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fc76f3bbec0f249b6596f56106c222, type: 3}
+  m_Name: JobCombine_Data
+  m_EditorClassIdentifier: 
+  _jobDiscetPrefab: {fileID: 3327079944282515389, guid: 49a3e0d429190fa4183dcd6a3ca2438f, type: 3}
+  _JobRecipes:
+  - combineID: 0000000001000000
+    jobName: "\u0436\u043E\u043F\u0430"
+    _jobData: {fileID: 11400000, guid: 53b27a51625ed58498a33d99e6249ff9, type: 2}

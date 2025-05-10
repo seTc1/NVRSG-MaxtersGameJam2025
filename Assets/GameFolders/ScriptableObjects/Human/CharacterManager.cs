@@ -45,6 +45,14 @@ public class CharacterManager : MonoBehaviour
         RefreshQueue();
     }
 
+    public void CloseAllInfo()
+    {
+        foreach (CharacterView human in FindObjectsOfType<CharacterView>())
+        {
+            human.CloseInfoCanvas();
+        }
+    }
+
     public void RefreshQueue()
     {
         queueInstances = activeInstances

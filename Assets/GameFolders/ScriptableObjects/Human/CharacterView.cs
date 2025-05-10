@@ -57,6 +57,16 @@ public class CharacterView : MonoBehaviour
     {
         return instance;
     }
+    
+    public void CloseInfoCanvas()
+    {
+        _infoCanvas.SetActive(false);
+        if (currentOpened == this)
+        {
+            currentOpened = null;
+        }
+    }
+
 
     private void OnMouseDown()
     {

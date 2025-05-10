@@ -65,7 +65,12 @@ public class SpawnCards_Manager : MonoBehaviour
         int segments = 20;
 
         Vector3 origin = _spawnTransform.position;
+
+#if UNITY_EDITOR
         Handles.color = Color.yellow;
+#else
+    Gizmos.color = Color.yellow;
+#endif
 
         float step = (_maxThrowAngle - _minThrowAngle) / segments;
 
@@ -77,13 +82,24 @@ public class SpawnCards_Manager : MonoBehaviour
             Vector3 pointA = origin + Quaternion.Euler(0, 0, angleA) * Vector3.right * radius;
             Vector3 pointB = origin + Quaternion.Euler(0, 0, angleB) * Vector3.right * radius;
 
+#if UNITY_EDITOR
             Handles.DrawLine(pointA, pointB);
+#else
+        Gizmos.DrawLine(pointA, pointB);
+#endif
         }
 
         Vector3 dirMin = Quaternion.Euler(0, 0, _minThrowAngle) * Vector3.right * radius;
         Vector3 dirMax = Quaternion.Euler(0, 0, _maxThrowAngle) * Vector3.right * radius;
+
+#if UNITY_EDITOR
         Handles.color = Color.red;
         Handles.DrawLine(origin, origin + dirMin);
         Handles.DrawLine(origin, origin + dirMax);
+#else
+    Gizmos.color = Color.red;
+    Gizmos.DrawLine(origin, origin + dirMin);
+    Gizmos.DrawLine(origin, origin + dirMax);
+#endif
     }
 }

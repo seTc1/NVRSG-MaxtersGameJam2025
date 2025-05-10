@@ -91,7 +91,9 @@ public class JobDiscet_Controller : DraggableObject
         var humanCanvas = GameObject.FindWithTag("humanCanvas");
         if (humanCanvas != null)
         {
-            humanCanvas.GetComponentInParent<CharacterView>().GetInstance().AssignJob();
+            var characterView = humanCanvas.GetComponentInParent<CharacterView>();
+            characterView.GetInstance().AssignJob();
+            characterView.CloseInfoCanvas(); // Закрываем canvas
             Destroy(gameObject);
         }
         else

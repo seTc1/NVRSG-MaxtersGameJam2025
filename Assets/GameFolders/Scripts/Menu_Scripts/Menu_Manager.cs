@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.Audio;
 public class Menu_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject _mainCanvas;
@@ -14,7 +14,7 @@ public class Menu_Manager : MonoBehaviour
 
     private bool _settingsOpen;
     [SerializeField] public TMP_Dropdown resolutionDropdown;
-    
+    [SerializeField] public AudioMixer audioMixer;
     Resolution[] resolutions;
     private void Start()
     {
@@ -53,6 +53,19 @@ public class Menu_Manager : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
         Debug.Log(isFullscreen);
+    }
+
+    public void SetVolumeMaster(float volume)
+    {
+        audioMixer.SetFloat("MasterVolume", volume);
+    }
+    public void SetVolumeMusic(float volume)
+    {
+        audioMixer.SetFloat("MusicVolume", volume);
+    }
+    public void SetVolumeSFX(float volume)
+    {
+        audioMixer.SetFloat("SFXVolume", volume);
     }
 
     public void SetResolution(int resolutionIndex)

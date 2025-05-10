@@ -13,6 +13,7 @@ public class CharacterInstance
         Data = data;
         BurnoutTimer = data.burnoutTimerMax + Random.Range(-10, 10);
         IdleTimer = data.idleTimerMax + Random.Range(-10, 10);
+        
         IsWorking = false;
     }
 
@@ -40,6 +41,11 @@ public class CharacterInstance
     {
         IsWorking = true;
         BurnoutTimer = Data.burnoutTimerMax;
+    }
+    public void AssignIdle()
+    {
+        IsWorking = false;
+        ResetIdleTimer();
     }
 
     public void ResetIdleTimer()

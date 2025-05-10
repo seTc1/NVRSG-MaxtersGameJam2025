@@ -5,95 +5,83 @@ using System.Linq;
 public class CharacterManager : MonoBehaviour
 {
     [Header("=== Data ===")]
-    [SerializeField] private HumanData[] allCharacters;
+    [SerializeField] private HumanData[] allCharactersData;
 
-    [Header("=== Queue ===")]
+    [Header("=== Queue Settings ===")]
     [SerializeField] private Transform[] queuePoints;
     [SerializeField] private CharacterView characterViewPrefab;
 
-    private List<CharacterInstance> activeCharacters = new List<CharacterInstance>();
-    private List<CharacterInstance> queueCharacters = new List<CharacterInstance>();
-    private List<CharacterView> activeViews = new List<CharacterView>();
+    private List<CharacterInstance> activeInstances = new List<CharacterInstance>();
+    private List<CharacterInstance> queueInstances = new List<CharacterInstance>();
+    private List<CharacterView> queueViews = new List<CharacterView>();
 
     private void Start()
     {
-        foreach (var data in allCharacters)
-            activeCharacters.Add(new CharacterInstance(data));
+        foreach (var data in allCharactersData)
+            activeInstances.Add(new CharacterInstance(data));
 
-        UpdateQueue();
-
-
+        RefreshQueue();
     }
 
     private void Update()
     {
-        for (int i = activeCharacters.Count - 1; i >= 0; i--)
+        for (int i = activeInstances.Count - 1; i >= 0; i--)
         {
-            var character = activeCharacters[i];
-            character.Tick(Time.deltaTime);
+            var inst = activeInstances[i];
+            inst.Tick(Time.deltaTime);
 
-            if (!character.IsWorking && character.IdleTimer <= 0f)
+            if (!inst.IsWorking && inst.IdleTimer <= 0f)
             {
-                RemoveFromSystem(character);
-                UpdateQueue();
+                Remove(inst);
                 continue;
             }
 
-            if (character.IsWorking && character.BurnoutTimer <= 0f)
+            if (inst.IsWorking && inst.BurnoutTimer <= 0f)
             {
-                character.IsWorking = false;
-                if (!queueCharacters.Contains(character))
-                    queueCharacters.Add(character);
+                inst.AssignIdle();
             }
         }
 
-        UpdateQueue();
+        RefreshQueue();
     }
 
-    private void UpdateQueue()
+    public void RefreshQueue()
     {
-        queueCharacters = queueCharacters
-            .Where(c => c.IdleTimer > 0f && !c.IsWorking)
+        queueInstances = activeInstances
+            .Where(c => !c.IsWorking && c.IdleTimer > 0f)
             .OrderBy(c => c.IdleTimer)
             .Take(queuePoints.Length)
             .ToList();
 
-        while (activeViews.Count < queueCharacters.Count)
+        while (queueViews.Count < queueInstances.Count)
         {
-            var view = Instantiate(characterViewPrefab, transform);
-            activeViews.Add(view);
+            var view = Instantiate(characterViewPrefab, queuePoints[queueViews.Count]);
+            queueViews.Add(view);
         }
 
-        while (activeViews.Count > queueCharacters.Count)
+        while (queueViews.Count > queueInstances.Count)
         {
-            Destroy(activeViews[activeViews.Count - 1].gameObject);
-            activeViews.RemoveAt(activeViews.Count - 1);
+            Destroy(queueViews.Last().gameObject);
+            queueViews.RemoveAt(queueViews.Count - 1);
         }
 
-        for (int i = 0; i < queueCharacters.Count; i++)
+        for (int i = 0; i < queueInstances.Count; i++)
         {
-            activeViews[i].Bind(queueCharacters[i]);
-            activeViews[i].transform.position = queuePoints[i].position;
-        }
-        foreach (var data in allCharacters)
-        {
-            var character = new CharacterInstance(data);
-            activeCharacters.Add(character);
-            queueCharacters.Add(character); // <- Добавляем сразу в очередь
+            queueViews[i].Bind(queueInstances[i]);
+            queueViews[i].transform.position = queuePoints[i].position;
         }
     }
 
-    private void RemoveFromSystem(CharacterInstance character)
+    private void Remove(CharacterInstance inst)
     {
-        activeCharacters.Remove(character);
-        queueCharacters.Remove(character);
+        activeInstances.Remove(inst);
 
-        for (int i = activeViews.Count - 1; i >= 0; i--)
+        for (int i = queueViews.Count - 1; i >= 0; i--)
         {
-            if (activeViews[i].GetInstance() == character)
+            if (queueViews[i].GetInstance() == inst)
             {
-                Destroy(activeViews[i].gameObject);
-                activeViews.RemoveAt(i);
+                Destroy(queueViews[i].gameObject);
+                queueViews.RemoveAt(i);
             }
         }
     }

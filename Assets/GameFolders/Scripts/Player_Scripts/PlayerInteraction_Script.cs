@@ -17,6 +17,8 @@ public class PlayerInteraction_Script : MonoBehaviour
     [SerializeField] private Animator screenNoiseAnimator;
     [SerializeField] private GameObject[] monitorCanvases;
     [SerializeField] private GameObject[] monitorEnvironments;
+    
+    [SerializeField] private Transform[] _2dTPPositions;
 
     [Header("=== Отладка ===")] 
     [SerializeField] public bool isLookingAtMonitors;
@@ -61,6 +63,7 @@ public class PlayerInteraction_Script : MonoBehaviour
     {
         yield return new WaitForSeconds(noiseDelay);   
         isLookingAtMonitors = true;
+        mainCameras[1].transform.position = _2dTPPositions[0].position;
         mainCameras[0].SetActive(true);
         mainCameras[1].SetActive(false);
 
@@ -81,7 +84,7 @@ public class PlayerInteraction_Script : MonoBehaviour
         isLookingAtMonitors = false;
         monitorCameras[2].SetActive(false);
         monitorCanvases[2].SetActive(true);
-        monitorEnvironments[2].SetActive(true);
+        monitorEnvironments[1].SetActive(true);
         mainCameras[0].SetActive(false);
         mainCameras[1].SetActive(true);
     }
@@ -92,9 +95,10 @@ public class PlayerInteraction_Script : MonoBehaviour
         isLookingAtMonitors = false;
         monitorCameras[1].SetActive(false);
         monitorCanvases[1].SetActive(true);
-        monitorEnvironments[1].SetActive(true);
         mainCameras[0].SetActive(false);
         mainCameras[1].SetActive(true);
+        mainCameras[1].transform.position = _2dTPPositions[1].position;
+        FindAnyObjectByType<CharacterManager>().GetComponent<CharacterManager>().RefreshQueue();
     }
     private IEnumerator SwitchToStatsView()
     {

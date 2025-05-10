@@ -5,5 +5,6 @@ public class CharacterData : ScriptableObject
 {
     public GameObject _characterPreview;
     public AudioClip[] characterSounds;
+    public bool _isPitchable;
     public string characterName;
 }

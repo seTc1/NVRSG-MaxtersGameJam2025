@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using Zenject;
 
 public class JobDiscet_Controller : DraggableObject
 {
@@ -15,11 +17,22 @@ public class JobDiscet_Controller : DraggableObject
     private Vector3 _lastSnapPosition;
     private Transform _lastSnapParent;
     private bool _wasInHotbar;
+    
+    
+    
+    private DiscetHolderBar_Controller _discetHolderBar;
 
-    public void InsertData(JobDiscet_Data insertedData)
+    private void Start()
+    {
+        _discetHolderBar = FindFirstObjectByType<DiscetHolderBar_Controller>().GetComponent<DiscetHolderBar_Controller>();
+
+    }
+
+    public void InsertData(JobDiscet_Data insertedData, string visibleName)
     {
         _jobDiscetData = insertedData;
-        _displayName.text = _jobDiscetData._JobName;
+        _displayName.text = visibleName;
+        
     }
 
     protected override void OnMouseDown()
@@ -27,7 +40,8 @@ public class JobDiscet_Controller : DraggableObject
         base.OnMouseDown();
         _lastSnapPosition = transform.position;
         _lastSnapParent = transform.parent;
-        _wasInHotbar = DiscetHolderBar_Controller.Instance.HolderBarPoints.Contains(_lastSnapParent?.gameObject);
+
+        _wasInHotbar = _discetHolderBar.HolderBarPoints.Contains(_lastSnapParent?.gameObject);
     }
 
     protected override void OnMouseUp()

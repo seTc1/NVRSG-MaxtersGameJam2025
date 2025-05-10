@@ -6,7 +6,8 @@ public class SelectableObject : MonoBehaviour
 {
     [Header("=== References ===")]
     [SerializeField] private GameObject _clickIconCanvas;
-
+    [SerializeField] public bool _canInteract;
+    
     [Header("=== Events ===")]
     [SerializeField] private UnityEvent _onClick;
 
@@ -24,6 +25,7 @@ public class SelectableObject : MonoBehaviour
 
     private void Update()
     {
+        if (!_canInteract) {return;}
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -52,6 +54,7 @@ public class SelectableObject : MonoBehaviour
 
     private void OnHoverEnter()
     {
+        if (!_canInteract) {return;}
         _isHovered = true;
         _outlineController.enabled = true;
         _clickIconCanvas.SetActive(true);

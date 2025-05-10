@@ -13,5 +13,15 @@ MonoBehaviour:
   m_Name: AI_CharData
   m_EditorClassIdentifier: 
   _characterPreview: {fileID: 3958495805805791105, guid: 45867aafea4ef67438e2eeeea64bb1e2, type: 3}
-  characterSounds: []
+  characterSounds:
+  - {fileID: 8300000, guid: 966fed430e798254d91f953586c4406f, type: 3}
+  - {fileID: 8300000, guid: 72f3db33ddd99b045b6ec8ebae6c536e, type: 3}
+  - {fileID: 8300000, guid: ade162a8eecf6bd41b3229f1a24bdf7d, type: 3}
+  - {fileID: 8300000, guid: e887525b62f75cb4aadbaabe8b893687, type: 3}
+  - {fileID: 8300000, guid: 43def9730e9933f4cad6d59a011b8902, type: 3}
+  - {fileID: 8300000, guid: bd29746b40e96f24c874f445e34025f8, type: 3}
+  - {fileID: 8300000, guid: 50ead280abc899c4c9937e3cf22c7064, type: 3}
+  - {fileID: 8300000, guid: 1bb0e05ff665d3442bfd7f1ae641720b, type: 3}
+  - {fileID: 8300000, guid: a441e3ceb790a2c478941cc84c037bee, type: 3}
+  _isPitchable: 0
   characterName: "\u0418\u0418 "

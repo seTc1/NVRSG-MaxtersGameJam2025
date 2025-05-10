@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _clickIconCanvas: {fileID: 557835278710896853}
+  _canInteract: 1
   _onClick:
     m_PersistentCalls:
       m_Calls: []

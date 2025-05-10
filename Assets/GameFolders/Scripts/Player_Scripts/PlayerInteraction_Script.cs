@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -19,7 +19,7 @@ public class PlayerInteraction_Script : MonoBehaviour
     [SerializeField] private GameObject[] monitorEnvironments;
 
     [Header("=== Отладка ===")] 
-    [SerializeField] private bool isLookingAtMonitors;
+    [SerializeField] public bool isLookingAtMonitors;
 
     public void ChangeLook()
     {

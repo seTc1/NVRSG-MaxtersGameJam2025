@@ -15,5 +15,9 @@ MonoBehaviour:
   _jobDiscetPrefab: {fileID: 3327079944282515389, guid: 49a3e0d429190fa4183dcd6a3ca2438f, type: 3}
   _JobRecipes:
   - combineID: 0000000001000000
-    jobName: "\u0436\u043E\u043F\u0430"
+    jobName: "\u041C\u043E\u0442\u0438\u0432\u0430\u0442\u043E\u0440 \u0441\u0435\u0442\u0435\u0432\u043E\u0433\u043E
+      \u043E\u043F\u0442\u0438\u043C\u0438\u0437\u043C\u0430"
     _jobData: {fileID: 11400000, guid: 53b27a51625ed58498a33d99e6249ff9, type: 2}
+  - combineID: 0200000003000000
+    jobName: "\u0422\u0435\u0445\u043D\u0438\u043A \u043F\u043E \u0447\u0438\u0441\u0442\u043A\u0435..."
+    _jobData: {fileID: 11400000, guid: 2e038c31d94260842b3840eafe5b5e55, type: 2}

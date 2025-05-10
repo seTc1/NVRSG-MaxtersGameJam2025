@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 2432873171897756791}
   - component: {fileID: 3681949308316088171}
   - component: {fileID: 6971018145335441637}
+  - component: {fileID: 3978331819287844564}
   m_Layer: 0
   m_Name: MonitorObject (1)
   m_TagString: Untagged
@@ -390,6 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _clickIconCanvas: {fileID: 8901564441735314264}
+  _canInteract: 0
   _onClick:
     m_PersistentCalls:
       m_Calls: []
@@ -414,6 +416,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 1.7, z: 1}
   m_Center: {x: 0, y: 1.85, z: -0.3}
+--- !u!114 &3978331819287844564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721502200648425099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4988bdeb02369e54eb0f820379f96494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5161912457568578615
 GameObject:
   m_ObjectHideFlags: 0

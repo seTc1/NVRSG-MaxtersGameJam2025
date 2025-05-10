@@ -150,13 +150,16 @@ public class Dialogue_Manager : MonoBehaviour
                 {
                     _characterPreviewObject.GetComponent<Animator>().speed = 0;
                 }
-                else
+                else 
                 {
                     _characterPreviewObject.GetComponent<Animator>().speed = animationSpeed;
                     if (charSounds != null && charSounds.Length > 0)
                     {
                         int randomIndex = Random.Range(0, charSounds.Length);
-                        _audioSource.pitch = soundPitch + Random.Range(-0.1f, 0.1f);
+                        if (_currentDialogueData.dialogueEntries[_currentDialogueIndex]._characterData._isPitchable)
+                        {
+                            _audioSource.pitch = soundPitch + Random.Range(-0.1f, 0.1f);
+                        }
                         _audioSource.PlayOneShot(charSounds[randomIndex]);
                     }
                     yield return new WaitForSeconds(speed);

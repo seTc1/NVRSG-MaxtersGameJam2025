@@ -11,6 +11,9 @@ public class SpawnCards_Manager : MonoBehaviour
     [SerializeField] private Transform _spawnTransform;
 
     [SerializeField] private float _spawnDelay;
+
+    [SerializeField] private GameObject _releaseCardsButton;
+    
     [Header("=== Card Throw Settings ===")]
     [SerializeField] private float _minThrowAngle = 20f;
     [SerializeField] private float _maxThrowAngle = 160f;
@@ -30,7 +33,10 @@ public class SpawnCards_Manager : MonoBehaviour
 
     private IEnumerator ReleaseCardsRoutine()
     {
-        for (int i = 0; i < _playerStats._jobCardsCount; i++)
+        _releaseCardsButton.SetActive(false);
+        int _cardsCount = _playerStats._jobCardsCount;
+        _playerStats._jobCardsCount = 0;
+        for (int i = 0; i < _cardsCount; i++)
         {
             GameObject spawnedCard = Instantiate(_cardPrefab, _spawnTransform.position, Quaternion.identity);
             spawnedCard.transform.SetParent(GameObject.FindWithTag("cardsCanvas").transform, false);
@@ -48,7 +54,7 @@ public class SpawnCards_Manager : MonoBehaviour
 
             yield return new WaitForSeconds(_spawnDelay);
         }
-        _playerStats._jobCardsCount = 0;
+        _releaseCardsButton.SetActive(true);
     }
 
     private void OnDrawGizmosSelected()

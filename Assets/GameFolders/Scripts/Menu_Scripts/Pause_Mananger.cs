@@ -6,22 +6,23 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Audio;
-public class Menu_Manager : MonoBehaviour
+public class Pause_Manager : MonoBehaviour
 {
-    [SerializeField] private GameObject _mainCanvas;
+    [SerializeField] private GameObject _maincanvas;
+    [SerializeField] private GameObject _pausecanvas;
     [SerializeField] private GameObject _settingsCanvas;
-    [SerializeField] private string _gameSceneName = "GameScene"; // Set your scene name in the Inspector
-
+   
+    private bool _pauseOpen;
     private bool _settingsOpen;
     [SerializeField] public TMP_Dropdown resolutionDropdown;
     [SerializeField] public AudioMixer audioMixer;
     Resolution[] resolutions;
     private void Start()
     {
-        _mainCanvas.SetActive(!_settingsOpen);
+        _maincanvas.SetActive(!_pauseOpen);
+        _pausecanvas.SetActive(_pauseOpen);
         _settingsCanvas.SetActive(_settingsOpen);
         //fullscreen
-        Screen.fullScreen = false;
         // resolution
         resolutions = Screen.resolutions;
         
@@ -44,10 +45,6 @@ public class Menu_Manager : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene(_gameSceneName);
-    }
 
     public void SetFullscreen(bool isFullscreen)
     {
@@ -80,8 +77,16 @@ public class Menu_Manager : MonoBehaviour
     public void SettingsWindow()
     {
         _settingsOpen = !_settingsOpen;
-        _mainCanvas.SetActive(!_settingsOpen);
+        _pauseOpen = !_pauseOpen;
+        _pausecanvas.SetActive(_pauseOpen);
         _settingsCanvas.SetActive(_settingsOpen);
+    }
+    public void PauseWindow()
+    {
+        _pauseOpen = !_pauseOpen;
+        _pausecanvas.SetActive(_pauseOpen);
+        _maincanvas.SetActive(!_pauseOpen);
+        
     }
     public void ExitGame()
     {

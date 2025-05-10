@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f3e566c1d48eda408da0fcfd15e855b, type: 3}
   m_Name: Human 10
   m_EditorClassIdentifier: 
-  characterName: "\u0420\u043E\u0431\u0438"
+  characterName: 
   _humanSprite: {fileID: 21300000, guid: 59a2f094f80ed3f40b2e013cb6a94e87, type: 3}
   responsibility: 10
   communication: 10

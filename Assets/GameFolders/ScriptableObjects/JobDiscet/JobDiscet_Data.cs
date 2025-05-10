@@ -11,4 +11,8 @@ public class JobDiscet_Data : ScriptableObject
     [Range(0, 10)] public int _responsibility;
     [Range(0, 10)] public int _communication;
     [Range(0, 10)] public int _stressResistance;
+    
+    public int Responsibility => _responsibility;
+    public int Communication => _communication;
+    public int StressResistance => _stressResistance;
 }

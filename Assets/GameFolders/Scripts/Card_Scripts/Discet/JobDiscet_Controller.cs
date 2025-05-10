@@ -53,7 +53,8 @@ public class JobDiscet_Controller : DraggableObject
             var view = hit.GetComponent<CharacterView>();
             if (view != null)
             {
-                view.GetInstance().AssignJob();
+                view.GetInstance().AssignJob(_jobDiscetData);
+
                 Destroy(gameObject);
                 return;
             }
@@ -92,7 +93,7 @@ public class JobDiscet_Controller : DraggableObject
         if (humanCanvas != null)
         {
             var characterView = humanCanvas.GetComponentInParent<CharacterView>();
-            characterView.GetInstance().AssignJob();
+            characterView.GetInstance().AssignJob(_jobDiscetData);
             characterView.CloseInfoCanvas(); // Закрываем canvas
             Destroy(gameObject);
         }

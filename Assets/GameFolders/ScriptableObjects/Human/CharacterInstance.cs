@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 public class CharacterInstance
@@ -10,15 +11,21 @@ public class CharacterInstance
     public bool IsWorking { get; set; }
     
     public Sprite _humanSprite { get; private set; }
+    
 
-    public CharacterInstance(HumanData data)
+    
+    private readonly IEffectSpawner _effectSpawner;
+
+    public CharacterInstance(HumanData data, IEffectSpawner effectSpawner)
     {
         Data = data;
+        _effectSpawner = effectSpawner;
         BurnoutTimer = data.burnoutTimerMax + Random.Range(-10, 10);
         IdleTimer = data.idleTimerMax + Random.Range(-10, 10);
         _humanSprite = data._humanSprite;
         IsWorking = false;
     }
+
 
     public void Tick(float dt)
     {
@@ -29,6 +36,7 @@ public class CharacterInstance
             {
                 BurnoutTimer = 0f;
                 IsWorking = false;
+                _effectSpawner.SpawnEffect(0);
                 ResetIdleTimer();
             }
         }
@@ -36,17 +44,39 @@ public class CharacterInstance
         {
             IdleTimer -= dt;
             if (IdleTimer < 0f)
+            {
                 IdleTimer = 0f;
+                _effectSpawner.SpawnEffect(2);
+            }
+            
+            
         }
     }
 
-    public void AssignJob()
+    public void AssignJob(JobDiscet_Data job)
     {
+        _effectSpawner.SpawnEffect(1);
         IsWorking = true;
-        BurnoutTimer = Data.burnoutTimerMax;
+
+        // 1) Сумма абсолютных разниц по трём характеристикам
+        float diffSum =
+            Mathf.Abs(Data.responsibility - job.Responsibility)
+            + Mathf.Abs(Data.communication   - job.Communication)
+            + Mathf.Abs(Data.stressResistance - job.StressResistance);
+
+        // 2) Нормировка (максимальная разница = 3 * 9)
+        const float maxDiff = 27f;
+        float similarity = 1f - diffSum / maxDiff;
+
+        // 3) Мультипликатор от 0.5 до 2 (чем выше схожесть – тем больше время)
+        float multiplier = Mathf.Lerp(0.5f, 2f, similarity);
+
+        BurnoutTimer = Data.burnoutTimerMax * multiplier;
     }
+
     public void AssignIdle()
     {
+        
         IsWorking = false;
         ResetIdleTimer();
     }

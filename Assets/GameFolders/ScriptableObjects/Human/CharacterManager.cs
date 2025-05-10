@@ -17,16 +17,18 @@ public class CharacterManager : MonoBehaviour
     private List<CharacterView> queueViews = new List<CharacterView>();
     
      private PlayerStats_Manager _statsManager;
+     private EffectSpawner _effectSpawner;
 
      [Inject]
-     private void Construct(PlayerStats_Manager statsManager)
+     private void Construct(PlayerStats_Manager statsManager, EffectSpawner effectSpawner)
      {
          _statsManager = statsManager;
+         _effectSpawner = effectSpawner;
      }
     private void Start()
     {
         foreach (var data in allCharactersData)
-            activeInstances.Add(new CharacterInstance(data));
+            activeInstances.Add(new CharacterInstance(data, _effectSpawner));
         _statsManager._allPeople = activeInstances.Count;
 
         RefreshQueue();

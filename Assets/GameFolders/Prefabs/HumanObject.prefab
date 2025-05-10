@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 7866350940979082975}
   m_Layer: 0
   m_Name: Canvas
-  m_TagString: humanCanvas
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 1507357920732498440}
   m_Layer: 0
   m_Name: BG
-  m_TagString: Untagged
+  m_TagString: humanCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

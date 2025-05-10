@@ -6,6 +6,7 @@ TagManager:
   tags:
   - cardsCanvas
   - 2Dcam
+  - humanCanvas
   layers:
   - Default
   - TransparentFX

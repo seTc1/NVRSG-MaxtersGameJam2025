@@ -4,7 +4,7 @@ public class DraggableObject : MonoBehaviour
 {
     [Header("=== Drag Settings ===")]
     private Camera _checkCamera;
-    private bool _isDragging;
+    public bool _isDragging;
     private Vector3 offset;
 
     protected virtual void OnMouseDown()

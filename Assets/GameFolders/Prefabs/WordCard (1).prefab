@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdae0fd09f2ad44baa0ce89c09fe22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isDragging: 0
   _wordCardData: {fileID: 11400000, guid: 7a4517bc6e9c75c40928778f3a949879, type: 2}
   _cardText: {fileID: 4270770762942967110}
   _jobCombineData: {fileID: 11400000, guid: 6f2a2be4788a09d449d7a1588df35ad2, type: 2}
@@ -127,7 +128,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &5716924938747210895
 GameObject:
   m_ObjectHideFlags: 0

@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6977246d74bf46d41ad5d6552d5b9396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isDragging: 0
   _jobDiscetData: {fileID: 11400000, guid: 53b27a51625ed58498a33d99e6249ff9, type: 2}
   _displayName: {fileID: 4398461558312660522}
   snapDistance: 1
@@ -339,4 +340,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

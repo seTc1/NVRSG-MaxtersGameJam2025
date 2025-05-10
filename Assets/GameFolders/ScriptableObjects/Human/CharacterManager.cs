@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Zenject;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -14,11 +15,19 @@ public class CharacterManager : MonoBehaviour
     private List<CharacterInstance> activeInstances = new List<CharacterInstance>();
     private List<CharacterInstance> queueInstances = new List<CharacterInstance>();
     private List<CharacterView> queueViews = new List<CharacterView>();
+    
+     private PlayerStats_Manager _statsManager;
 
+     [Inject]
+     private void Construct(PlayerStats_Manager statsManager)
+     {
+         _statsManager = statsManager;
+     }
     private void Start()
     {
         foreach (var data in allCharactersData)
             activeInstances.Add(new CharacterInstance(data));
+        _statsManager._allPeople = activeInstances.Count;
 
         RefreshQueue();
     }
@@ -43,6 +52,9 @@ public class CharacterManager : MonoBehaviour
         }
 
         RefreshQueue();
+        _statsManager._peopleAlive = activeInstances.Count;
+        _statsManager._peopleWorking = activeInstances.Count(c => c.IsWorking);
+
     }
 
     public void CloseAllInfo()

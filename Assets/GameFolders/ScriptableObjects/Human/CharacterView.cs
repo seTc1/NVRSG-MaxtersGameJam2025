@@ -1,9 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class CharacterView : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    
     [Header("=== UI ===")]
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Slider idleSlider;
@@ -21,6 +25,7 @@ public class CharacterView : MonoBehaviour
     [SerializeField] private TMP_Text stressValue;
     [SerializeField] private Slider stressSlider;
 
+
     private CharacterInstance instance;
 
     private static CharacterView currentOpened;
@@ -35,15 +40,17 @@ public class CharacterView : MonoBehaviour
 
         responsibilitySlider.maxValue = 10;
         responsibilitySlider.value = character.Data.responsibility;
-        responsibilityValue.text = character.Data.responsibility.ToString();
+        responsibilityValue.text = character.Data.responsibility + "/10";
 
         communicationSlider.maxValue = 10;
         communicationSlider.value = character.Data.communication;
-        communicationValue.text = character.Data.communication.ToString();
+        communicationValue.text = character.Data.communication + "/10";
 
         stressSlider.maxValue = 10;
         stressSlider.value = character.Data.stressResistance;
-        stressValue.text = character.Data.stressResistance.ToString();
+        stressValue.text = character.Data.stressResistance + "/10";
+        
+        _spriteRenderer.sprite = character._humanSprite;
     }
 
 

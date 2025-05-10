@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CharacterInstance
@@ -7,13 +8,15 @@ public class CharacterInstance
     public float BurnoutTimer { get; private set; }
     public float IdleTimer { get; private set; }
     public bool IsWorking { get; set; }
+    
+    public Sprite _humanSprite { get; private set; }
 
     public CharacterInstance(HumanData data)
     {
         Data = data;
         BurnoutTimer = data.burnoutTimerMax + Random.Range(-10, 10);
         IdleTimer = data.idleTimerMax + Random.Range(-10, 10);
-        
+        _humanSprite = data._humanSprite;
         IsWorking = false;
     }
 

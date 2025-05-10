@@ -5,7 +5,8 @@ public class HumanData : ScriptableObject
 {
     [Header("=== Identity ===")]
     public string characterName;
-
+    public Sprite _humanSprite;
+    
     [Header("=== Skills ===")]
     [Range(1, 10)] public int responsibility;
     [Range(1, 10)] public int communication;

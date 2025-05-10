@@ -8,6 +8,11 @@ public class PlayerStats_Manager : MonoBehaviour
     [SerializeField] public float _playerSecMaxTimer;
     [SerializeField] public float _currentTimer;
 
+    public int _allPeople;
+    public int _peopleAlive;
+    public int _peopleWorking;
+    
+
 
     private void Start()
     {

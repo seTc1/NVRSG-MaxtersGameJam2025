@@ -88,16 +88,27 @@ public class JobDiscet_Controller : DraggableObject
         }
 
         // 4. Перемещение на канвас
-        var canvas = GameObject.FindWithTag("cardsCanvas");
-        if (canvas != null)
+        var humanCanvas = GameObject.FindWithTag("humanCanvas");
+        if (humanCanvas != null)
         {
-            transform.SetParent(canvas.transform);
-            transform.localScale = Vector3.one;
+            humanCanvas.GetComponentInParent<CharacterView>().GetInstance().AssignJob();
+            Destroy(gameObject);
         }
         else
         {
-            transform.position = _lastSnapPosition;
-            transform.SetParent(_lastSnapParent);
+            var canvas = GameObject.FindWithTag("cardsCanvas");
+            if (canvas != null)
+            {
+                transform.SetParent(canvas.transform);
+                transform.localScale = Vector3.one;
+            }
+            else
+            {
+                transform.position = _lastSnapPosition;
+                transform.SetParent(_lastSnapParent);
+            }
         }
+        
+
     }
 }

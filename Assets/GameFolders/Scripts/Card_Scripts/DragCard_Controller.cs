@@ -52,7 +52,7 @@ public class DragCard_Controller : DraggableObject
             if (recipe.combineID.OrderBy(x => x).SequenceEqual(currentIDs.OrderBy(x => x)))
             {
                 GameObject _spawnedDiscet = Instantiate(_jobCombineData._jobDiscetPrefab, transform.position, Quaternion.identity);
-                _spawnedDiscet.transform.parent = GameObject.FindWithTag("cardsCanvas").transform;
+                _spawnedDiscet.transform.SetParent(GameObject.FindWithTag("cardsCanvas").transform, false);
                 _spawnedDiscet.transform.localScale = Vector3.one;
                 _spawnedDiscet.GetComponent<JobDiscet_Controller>().InsertData(recipe._jobData, recipe.jobName);
                 Debug.Log("COMBINED INTO: " + recipe.jobName);

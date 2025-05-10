@@ -72,6 +72,11 @@ public class Menu_Manager : MonoBehaviour
     {
         Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, Screen.fullScreen);
     }
+
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
     public void SettingsWindow()
     {
         _settingsOpen = !_settingsOpen;

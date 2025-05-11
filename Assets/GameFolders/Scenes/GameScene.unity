@@ -16285,7 +16285,7 @@ MonoBehaviour:
   _mainCircle: {fileID: 804359245}
   _outerCam: {fileID: 67932080}
   _printerCam: {fileID: 1090682301}
-  _increaseValue: 0.1
+  _increaseValue: 0.3
   _decraseValue: 0.01
 --- !u!65 &1565190056
 BoxCollider:

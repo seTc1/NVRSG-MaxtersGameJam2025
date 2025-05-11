@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: "\u0414\u0438\u043C\u0430"
   _humanSprite: {fileID: 21300000, guid: 59a2f094f80ed3f40b2e013cb6a94e87, type: 3}
-  responsibility: 1
-  communication: 1
-  stressResistance: 1
+  responsibility: 7
+  communication: 3
+  stressResistance: 5
   burnoutTimerMax: 20
   idleTimerMax: 80

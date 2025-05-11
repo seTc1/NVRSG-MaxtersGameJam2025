@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f3e566c1d48eda408da0fcfd15e855b, type: 3}
   m_Name: Human 7
   m_EditorClassIdentifier: 
-  characterName: 
-  _humanSprite: {fileID: 21300000, guid: 1d5efc3addc73104e94ff0103eb996d9, type: 3}
-  responsibility: 10
-  communication: 10
-  stressResistance: 10
+  characterName: "\u041E\u043B\u044C\u0433\u0430"
+  _humanSprite: {fileID: 21300000, guid: 06563a88e32caae4c8c97e8c595508d3, type: 3}
+  responsibility: 5
+  communication: 3
+  stressResistance: 7
   burnoutTimerMax: 20
   idleTimerMax: 80

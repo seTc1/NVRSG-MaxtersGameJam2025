@@ -7,6 +7,7 @@ public class SelectableObject : MonoBehaviour
     [Header("=== References ===")]
     [SerializeField] private GameObject _clickIconCanvas;
     [SerializeField] public bool _canInteract;
+    [SerializeField] private AudioClip _clickSound;
     
     [Header("=== Events ===")]
     [SerializeField] private UnityEvent _onClick;
@@ -14,9 +15,12 @@ public class SelectableObject : MonoBehaviour
     private Camera _mainCamera;
     private Outline _outlineController;
     private bool _isHovered;
+    
+    private AudioSource _audioSource;
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _mainCamera = Camera.main;
         _outlineController = GetComponentInParent<Outline>();
         _outlineController.enabled = false;
@@ -40,6 +44,7 @@ public class SelectableObject : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                _audioSource.PlayOneShot(_clickSound);
                 _onClick?.Invoke();
             }
         }

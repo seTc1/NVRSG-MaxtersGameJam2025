@@ -9,7 +9,8 @@ public class JobDiscet_Controller : DraggableObject
     [Header("=== Discet Settings ===")]
     [SerializeField] private JobDiscet_Data _jobDiscetData;
     [SerializeField] private TMP_Text _displayName;
-
+    [SerializeField] private AudioClip _spawnSound;
+    
     [Header("=== Snapping Settings ===")]
     [SerializeField] private float snapDistance = 0.5f;
     [SerializeField] private float returnDistance = 1.5f;
@@ -22,9 +23,12 @@ public class JobDiscet_Controller : DraggableObject
     private Transform _lastSnapParent;
     private bool _wasInHotbar;
     private DiscetHolderBar_Controller _discetHolderBar;
+    private AudioSource _audioSource;
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>(); 
+        _audioSource.playOnAwake = false;
         _discetHolderBar = FindFirstObjectByType<DiscetHolderBar_Controller>().GetComponent<DiscetHolderBar_Controller>();
     }
 

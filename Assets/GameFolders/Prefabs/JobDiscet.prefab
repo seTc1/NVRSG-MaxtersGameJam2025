@@ -266,8 +266,13 @@ MonoBehaviour:
   _isDragging: 0
   _jobDiscetData: {fileID: 11400000, guid: 53b27a51625ed58498a33d99e6249ff9, type: 2}
   _displayName: {fileID: 4398461558312660522}
+  _spawnSound: {fileID: 8300000, guid: 03bde30eb0cacf240aac01c43d19a2a5, type: 3}
   snapDistance: 1
   returnDistance: 1
+  dropDistance: 1
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &5335195219204480668
 BoxCollider2D:
   m_ObjectHideFlags: 0

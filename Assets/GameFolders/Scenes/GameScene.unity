@@ -2095,22 +2095,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ad66d64a55113f349ae65e1679c54531, type: 2}
   - {fileID: 11400000, guid: 21b76f8f7b4da8f428f5c7297245ad37, type: 2}
   - {fileID: 11400000, guid: 67f29bbf1544cfa4ebe44dbb1833e6f0, type: 2}
-  - {fileID: 11400000, guid: cd3201ef5dfa9ad4d84abbe9ab3698c6, type: 2}
-  - {fileID: 11400000, guid: d958da4009e1f32408c14b1618d9b676, type: 2}
-  - {fileID: 11400000, guid: fd04609fd09cc5e4fbf0f866cbbe0e73, type: 2}
-  - {fileID: 11400000, guid: f681332a4cb84f142b302f6926d57bbc, type: 2}
-  - {fileID: 11400000, guid: 8d26b260bd058a34080455e6defc729d, type: 2}
-  - {fileID: 11400000, guid: 1c1e718d619766b43a8ef0440a9a7d1c, type: 2}
-  - {fileID: 11400000, guid: 8621983ad54a41a4b9e2aa19489ad4d1, type: 2}
-  - {fileID: 11400000, guid: 251fd77a04e61464b8bee6afbd9c3b70, type: 2}
-  - {fileID: 11400000, guid: 47831de18d47fed4ebbea74ac176fef6, type: 2}
-  - {fileID: 11400000, guid: bb852b3f1d89d3143b70e32d43744de9, type: 2}
-  - {fileID: 11400000, guid: 6e963fe7bfd893f4384e124dbdd513c8, type: 2}
-  - {fileID: 11400000, guid: b15eee49f25c9a74087efdb2c2143e3b, type: 2}
-  - {fileID: 11400000, guid: 0d7f1fbeb5adea048a4110d07c0820ee, type: 2}
-  - {fileID: 11400000, guid: 8d923d31e07fc4746bdfc5cbdd8cb464, type: 2}
-  - {fileID: 11400000, guid: 65d7427d39d2648488946902c4e67aae, type: 2}
-  - {fileID: 11400000, guid: 23d14606d3e4c3540a9d6290e7c485c7, type: 2}
   queuePoints:
   - {fileID: 1895503509}
   - {fileID: 2143360943}
@@ -3074,10 +3058,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd492f53733a4d549a70893db8a68363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jobCardsCount: 0
-  _playerSecMaxTimer: 120
+  _jobCardsCount: 24
+  _playerSecMaxTimer: 360
   _currentTimer: 0
-  _peopleToLose: 5
+  _peopleToLose: 2
   _allPeople: 0
   _peopleAlive: 0
   _peopleWorking: 0

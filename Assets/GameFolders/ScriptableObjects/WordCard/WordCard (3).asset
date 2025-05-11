@@ -15,3 +15,4 @@ MonoBehaviour:
   _cardID: 2
   _cardAbility: "\u0410\u0440\u0445\u0438\u0432\u0438\u0440\u043E\u0432\u0430\u0442\u044C
     \u0448\u0443\u043C"
+  _cardColor: {r: 0.8, g: 0.17647056, b: 0.7371387, a: 1}

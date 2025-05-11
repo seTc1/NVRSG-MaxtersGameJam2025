@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardID: 3
   _cardAbility: "\u041F\u044B\u043B\u0435\u0441\u043E\u0441\u0438\u0442\u044C \u0432\u043E\u0434\u0443"
+  _cardColor: {r: 0.6278592, g: 0.17647056, b: 0.8, a: 1}

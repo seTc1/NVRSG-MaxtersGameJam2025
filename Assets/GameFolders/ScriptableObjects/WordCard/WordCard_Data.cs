@@ -5,4 +5,5 @@ public class WordCard_Data : ScriptableObject
 {
     public int _cardID;
     public string _cardAbility;
+    public Color _cardColor;
 }

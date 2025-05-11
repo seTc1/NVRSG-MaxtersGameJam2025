@@ -7,6 +7,7 @@ public class GameState_Manager : MonoBehaviour
 
     public void LooseGame()
     {
+        Debug.Log("Loose Game");
         _fadeCanvasObject.GetComponent<Animator>().SetTrigger("fadeIn");
     }
 }

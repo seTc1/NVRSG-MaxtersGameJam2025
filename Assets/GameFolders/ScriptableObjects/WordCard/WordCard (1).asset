@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardID: 0
   _cardAbility: "\u0433\u043B\u0430\u0434\u0438\u0442\u044C wi-fi"
+  _cardColor: {r: 0.8018868, g: 0.17777678, b: 0.17777678, a: 1}

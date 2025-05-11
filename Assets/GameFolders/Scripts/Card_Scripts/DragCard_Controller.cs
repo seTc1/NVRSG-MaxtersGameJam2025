@@ -1,6 +1,7 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DragCard_Controller : DraggableObject
 {
@@ -20,6 +21,7 @@ public class DragCard_Controller : DraggableObject
     {
         _wordCardData = wordCardData;
         _cardText.text = _wordCardData._cardAbility;
+        GetComponentInChildren<Image>().color = _wordCardData._cardColor;
     }
 
     protected override void OnMouseUp()

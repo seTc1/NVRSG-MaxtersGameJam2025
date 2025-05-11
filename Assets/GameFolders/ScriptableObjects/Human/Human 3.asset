@@ -17,5 +17,5 @@ MonoBehaviour:
   responsibility: 6
   communication: 1
   stressResistance: 8
-  burnoutTimerMax: 20
-  idleTimerMax: 80
+  burnoutTimerMax: 70
+  idleTimerMax: 120

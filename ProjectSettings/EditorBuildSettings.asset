@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameFolders/Scenes/MainMenu.unity
     guid: b1699d3146b126b44a5ac6cd8061c3fa
-  - enabled: 0
-    path: Assets/GameFolders/Scenes/SceneTemplate.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/GameFolders/Scenes/NewTutor.unity
+    guid: 0b7002206c698124bb240d729b5a69c4
   - enabled: 1
     path: Assets/GameFolders/Scenes/GameScene.unity
     guid: 2d05102bb6e2b9a438e2c6992ef3a664
+  - enabled: 1
+    path: Assets/GameFolders/Scenes/EndScene.unity
+    guid: 1a542e658284abd42b133adfe953d23b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0

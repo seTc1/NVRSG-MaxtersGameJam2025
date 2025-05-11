@@ -1735,7 +1735,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1836382406}
-  - {fileID: 1216742603}
   m_Father: {fileID: 881340726}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4738,11 +4737,11 @@ Transform:
   m_GameObject: {fileID: 1216742602}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -460.5171, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 347610128}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1216742604
 AudioSource:
@@ -4757,7 +4756,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 57135da8e3ad7f14fabeeab51757a5c5, type: 3}
   m_Resource: {fileID: 8300000, guid: 57135da8e3ad7f14fabeeab51757a5c5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.814
+  m_Volume: 0.468
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7305,7 +7304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainCanvas: {fileID: 1423875078}
   _settingsCanvas: {fileID: 881340725}
-  _gameSceneName: GameScene
+  _gameSceneName: NewTutor
   resolutionDropdown: {fileID: 250025087}
   audioMixer: {fileID: 24100000, guid: 2bcad85db656ca841a019af377bf30d1, type: 2}
 --- !u!1 &2118900279
@@ -7522,3 +7521,4 @@ SceneRoots:
   - {fileID: 432649970}
   - {fileID: 258165640}
   - {fileID: 2012275487}
+  - {fileID: 1216742603}

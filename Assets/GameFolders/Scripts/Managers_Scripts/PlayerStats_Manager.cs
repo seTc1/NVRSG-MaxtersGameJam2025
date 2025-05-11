@@ -35,5 +35,10 @@ public class PlayerStats_Manager : MonoBehaviour
         {
             _gameStateManager.LooseGame();
         }
+
+        if (_currentTimer <= 0)
+        {
+            _gameStateManager.WinGame();
+        }
     }
 }

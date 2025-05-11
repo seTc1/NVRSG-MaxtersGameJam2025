@@ -20,11 +20,13 @@ public class PrinterObject_Controller : MonoBehaviour
     private float _timer;
 
     private PlayerStats_Manager _playerStats;
+    private EffectSpawner _effectSpawner;
 
     [Inject]
-    private void Construct(PlayerStats_Manager playerStats)
+    private void Construct(PlayerStats_Manager playerStats, EffectSpawner effectSpawner)
     {
         _playerStats = playerStats;
+        _effectSpawner = effectSpawner;
     }
     private void Start()
     {
@@ -51,6 +53,7 @@ public class PrinterObject_Controller : MonoBehaviour
         if (_circleImage.fillAmount >= 1f)
         {
             _circleImage.fillAmount = 0f;
+             _effectSpawner.SpawnEffect(3);
             _playerStats._jobCardsCount++;  
         }
     }

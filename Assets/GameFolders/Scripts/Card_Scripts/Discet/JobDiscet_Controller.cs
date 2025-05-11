@@ -50,20 +50,6 @@ public class JobDiscet_Controller : DraggableObject
     {
         base.OnMouseUp();
 
-        // 1. Попадание на персонажа
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, dropDistance, characterLayer);
-        foreach (var hit in hits)
-        {
-            var view = hit.GetComponent<CharacterView>();
-            if (view != null)
-            {
-                view.GetInstance().AssignJob(_jobDiscetData);
-
-                Destroy(gameObject);
-                return;
-            }
-        }
-
         // 2. Снаппинг в хотбар
         GameObject closestPoint = null;
         float closestDistance = Mathf.Infinity;
